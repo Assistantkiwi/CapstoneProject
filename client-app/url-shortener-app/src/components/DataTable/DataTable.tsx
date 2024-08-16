@@ -10,8 +10,8 @@ interface IDataTableProps {
 const DataTable: React.FunctionComponent<IDataTableProps> = (props) => {
     const {data} = props;
     console.log("Data in DataTable is", data);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const renderTableData = () => {
+    
+    const renderIableData = () => {
         return data.map((item) => {
             return ( 
                 <tr key={item._id} 
@@ -45,7 +45,7 @@ const DataTable: React.FunctionComponent<IDataTableProps> = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    
+                    {renderIableData()}
                 </tbody>
             </table>
         </div>
