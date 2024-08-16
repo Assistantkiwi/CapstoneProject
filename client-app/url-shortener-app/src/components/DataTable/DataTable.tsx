@@ -2,13 +2,17 @@ import * as React from 'react';
 import { UrlData } from '../../interface/UrlData';
 import { Link } from 'react-router-dom';
 import { serverUrl } from '../../helpers/Constants';
+import { copy } from '../../assets/copy.tsx';
+import { remove } from '../../assets/delete.tsx'
+import axios from 'axios';
 
 interface IDataTableProps {
     data: UrlData[];
+    updateReloadState: () => void;
 }
 
 const DataTable: React.FunctionComponent<IDataTableProps> = (props) => {
-    const {data} = props;
+    const {data, updateReloadState} = props;
     console.log("Data in DataTable is", data);
     
     const renderTableData = () => {
@@ -27,11 +31,35 @@ const DataTable: React.FunctionComponent<IDataTableProps> = (props) => {
                        </Link> 
                     </td>
                     <td className='px-6 py-3'>{item.clicks}</td>
-                    <td className='px-6 py-3'></td>
+                    <td className='px-6 py-3'>
+                        <div className='flex content-center'>
+                            <div className='cursor-pointer px-2' onClick={() => copyToClipboard(item.shortUrl)}>
+                              {copy}
+                            </div>
+                            <div className='cursor-pointer px-2' onClick={() => deleteUrl(item._id)}>
+                                {remove}
+                            </div>
+                        </div>
+                        
+                    </td>
                 </tr>
             );
         });
     };
+    const copyToClipboard =async (url: string) => {
+        try {
+            await navigator.clipboard.writeText(`${serverUrl}/shortUrl/${url}`);
+            alert(`link copied!`);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    const deleteUrl= async (id: string) => {
+        const response = await axios.delete(`${serverUrl}/shortUrl/${id}`);
+        console.log(response);
+        updateReloadState();
+    };
+
   return (
     <div className='container mx-auto pt-2 pb-10'>
         <div className='relative overflow-x-auto shadow-sm sm:rounded-lg '>
