@@ -11,7 +11,7 @@ const DataTable: React.FunctionComponent<IDataTableProps> = (props) => {
     const {data} = props;
     console.log("Data in DataTable is", data);
     
-    const renderIableData = () => {
+    const renderTableData = () => {
         return data.map((item) => {
             return ( 
                 <tr key={item._id} 
@@ -45,7 +45,7 @@ const DataTable: React.FunctionComponent<IDataTableProps> = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {renderIableData()}
+                    {renderTableData()}
                 </tbody>
             </table>
         </div>
