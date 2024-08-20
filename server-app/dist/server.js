@@ -14,8 +14,16 @@ const port = process.env.PORT || 5001;
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
+const allowedOrigins = ["http://localhost:3000', 'https://capstone-project-gules.vercel.app/"];
 app.use((0, cors_1.default)({
-    origin: "http://localhost:3000",
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
     credentials: true,
 }));
 app.use("/api/", shortUrl_1.default);
