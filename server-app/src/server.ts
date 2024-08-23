@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const allowedOrigins = [
     'http://localhost:3000', 
-    'https://capstone-project-gules.vercel.app/' 
+    'https://capstone-project-gules.vercel.app' 
   ];
   
   const corsOptions = {
