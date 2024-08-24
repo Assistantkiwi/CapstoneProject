@@ -1,18 +1,16 @@
 import * as React from 'react';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
-import Container from './components/Container/Container';
+import { RouterProvider } from 'react-router-dom';
+import router from './routes';
+import { UserAuthProvider } from './context/userAuthContext';
 
 type IAppProps = object
 
 const App: React.FunctionComponent<IAppProps> = () => {
   return (
-    <>
-       <Header/>
-       <Container/>
-       <Footer/>
-    </>
-  );
+  <UserAuthProvider>
+    <RouterProvider router={router} />;
+  </UserAuthProvider>
+  ); 
 };
 
 export default App;
