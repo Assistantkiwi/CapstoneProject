@@ -11,7 +11,7 @@ const Header: React.FunctionComponent<IHeaderProps> = () => {
                 <div className='text-xl text-white'>SCISSORS</div>
             </nav>
         </div>
-        <div className='container p-2 mx-auto flex text-xl text-white'>
+        <div className='container p-2 mx-auto flex text-sm text-white'>
         <nav className='p-5'>
             <Link to="/signup" className='hover:text-blue-800' >Sign Up</Link>
             </nav>
