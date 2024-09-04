@@ -35,6 +35,12 @@ const allowedOrigins = [
 // Use the CORS middleware
 app.use(cors(corsOptions));
 
+// Middleware to set COOP header
+app.use((req, res, next) => {
+  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
+  next();
+});
+
 // Ensure your server handles OPTIONS requests
 app.options('*', cors(corsOptions)); 
 

@@ -34,6 +34,9 @@ const corsOptions = {
 };
 // Use the CORS middleware
 app.use((0, cors_1.default)(corsOptions));
+
+
+
 // Ensure your server handles OPTIONS requests
 app.options('*', (0, cors_1.default)(corsOptions));
 app.use("/api/", shortUrl_1.default);
