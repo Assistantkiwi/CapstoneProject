@@ -35,10 +35,15 @@ const corsOptions = {
 // Use the CORS middleware
 app.use((0, cors_1.default)(corsOptions));
 
-
+// Middleware to set COOP header
+app.use((req, res, next) => {
+    res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
+    next();
+  });
 
 // Ensure your server handles OPTIONS requests
 app.options('*', (0, cors_1.default)(corsOptions));
+
 app.use("/api/", shortUrl_1.default);
 const port = process.env.PORT || 5001;
 app.listen(port, () => {
